@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Flxware Technologies')</title>
+    <meta name="description" content="We're a passionate team of developers creating innovative software that transforms businesses and empowers growth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="loader-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div class="navbar-wrapper">
+        <nav class="navbar-pill">
+            <a href="{{ route('home') }}" class="pill-logo" style="display: flex; align-items: center; gap: 10px; color: var(--text-primary);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 5 11 L 8 5 H 14 L 11 11 Z" fill="currentColor"/>
+                    <path d="M 10 19 L 13 13 H 19 L 16 19 Z" fill="currentColor"/>
+                </svg>
+                <span style="font-weight: 700; font-size: 1.2rem; color: var(--text-primary); letter-spacing: -0.5px;">Flxware</span>
+            </a>
+            <ul class="pill-links" id="nav-links">
+                <li><a href="{{ request()->routeIs('home') ? '#home' : route('home') }}" class="nav-scroll-link">Home</a></li>
+                <li><a href="{{ request()->routeIs('home') ? '#services' : route('services') }}" class="nav-scroll-link">Services</a></li>
+                <li><a href="{{ request()->routeIs('home') ? '#about' : route('about') }}" class="nav-scroll-link">About</a></li>
+                <li><a href="{{ request()->routeIs('home') ? '#portfolio' : route('portfolio') }}" class="nav-scroll-link">Portfolio</a></li>
+                <li><a href="{{ route('careers') }}" class="{{ request()->routeIs('careers') || request()->routeIs('careers.show') ? 'active' : '' }}">Careers</a></li>
+                <li><a href="{{ route('blog') }}" class="{{ request()->routeIs('blog') || request()->routeIs('blog.show') ? 'active' : '' }}">Blog</a></li>
+                <li><a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}" class="nav-scroll-link">Contact</a></li>
+            </ul>
+            <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}" class="pill-btn nav-scroll-link">Get Started</a>
+            
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" style="background: transparent; border: 1px solid var(--glass-border); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-primary); margin-left: 10px;">
+                <svg id="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
+            <button class="mobile-toggle" id="mobile-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </div>
+
+    <main class="main-content" id="home">
+        @yield('content')
+    </main>
+
+    <footer class="footer-new">
+        <div class="footer-new-container">
+            <div class="footer-brand">
+                <a href="{{ route('home') }}" class="footer-logo">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 2L3 22h5l5-20H8z" fill="currentColor"/>
+                            <path d="M14 2l-5 20h5l5-20h-5z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <span>Flxware</span>
+                </a>
+                <p class="copyright">&copy; copyright Flxware Technologies {{ date('Y') }}. All rights reserved.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><a href="#">All Products</a></li>
+                        <li><a href="#">Studio</a></li>
+                        <li><a href="#">Clients</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Register</h4>
+                    <ul>
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Forgot Password</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-watermark">Flxware</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="{{ asset('js/three-animation.js') }}"></script>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+        
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light-theme';
+        document.body.classList.add(savedTheme);
+        
+        if(savedTheme === 'light-theme') {
+            moonIcon.style.display = 'block';
+            sunIcon.style.display = 'none';
+        } else {
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'block';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('light-theme')) {
+                document.body.classList.remove('light-theme');
+                localStorage.setItem('theme', 'dark-theme');
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                document.body.classList.add('light-theme');
+                localStorage.setItem('theme', 'light-theme');
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+        });
+
+        // Floating Nav Scroll Behavior
+        let lastScrollY = window.scrollY;
+        const navWrapper = document.querySelector('.navbar-wrapper');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                // Scrolling down past threshold
+                navWrapper.classList.add('nav-hidden');
+            } else {
+                // Scrolling up
+                navWrapper.classList.remove('nav-hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // Floating Dock Animation for Navbar Links
+        const navLinksDock = document.querySelectorAll('#nav-links li a');
+        const navbarPill = document.querySelector('.navbar-pill');
+        const maxDistance = 150;
+        const maxScale = 1.35;
+        
+        document.addEventListener('mousemove', (e) => {
+            if(window.innerWidth <= 768) return;
+
+            navLinksDock.forEach(link => {
+                const rect = link.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const distanceX = Math.abs(e.clientX - centerX);
+                const distanceY = Math.abs(e.clientY - centerY);
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                if (distance < maxDistance) {
+                    const scale = 1 + (maxScale - 1) * Math.cos((distance / maxDistance) * (Math.PI / 2));
+                    const translateY = -((scale - 1) * 10);
+                    link.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+                } else {
+                    link.style.transform = 'scale(1) translateY(0px)';
+                }
+            });
+        });
+
+        navbarPill.addEventListener('mouseleave', () => {
+            if(window.innerWidth <= 768) return;
+            navLinksDock.forEach(link => {
+                link.style.transition = 'transform 0.3s ease, color 0.3s ease, background 0.3s ease';
+                link.style.transform = 'scale(1) translateY(0px)';
+            });
+        });
+
+        navbarPill.addEventListener('mouseenter', () => {
+            if(window.innerWidth <= 768) return;
+            navLinksDock.forEach(link => {
+                link.style.transition = 'color 0.3s ease, background 0.3s ease';
+            });
+        });
+
+        // Infinite Moving Cards (Scroller)
+        const scrollers = document.querySelectorAll('.scroller');
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            scrollers.forEach((scroller) => {
+                const inner = scroller.querySelector('.scroller-inner');
+                const content = Array.from(inner.children);
+                
+                content.forEach((item) => {
+                    const clone = item.cloneNode(true);
+                    clone.setAttribute("aria-hidden", true);
+                    inner.appendChild(clone);
+                });
+
+                if(scroller.getAttribute("data-direction") === "right") {
+                    inner.style.setProperty("--animation-direction", "reverse");
+                } else {
+                    inner.style.setProperty("--animation-direction", "forwards");
+                }
+
+                if(scroller.getAttribute("data-speed") === "fast") {
+                    inner.style.setProperty("--animation-duration", "20s");
+                } else if(scroller.getAttribute("data-speed") === "slow") {
+                    inner.style.setProperty("--animation-duration", "80s");
+                } else {
+                    inner.style.setProperty("--animation-duration", "40s");
+                }
+            });
+        }
+
+        // 3D Pin Effect (Aceternity UI)
+        const pinContainers = document.querySelectorAll('.pin-container');
+        pinContainers.forEach(container => {
+            const card = container.querySelector('.pin-card');
+            
+            container.addEventListener('mousemove', (e) => {
+                if(window.innerWidth <= 768) return; // Disable 3D on mobile
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -15;
+                const rotateY = ((x - centerX) / centerX) * 15;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(0.98, 0.98, 0.98)`;
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+
+            container.addEventListener('click', () => {
+                const href = container.getAttribute('data-href');
+                if(href) window.location.href = href;
+            });
+        });
+
+        // Card Hover Effect (Aceternity UI)
+        const hoverGroups = document.querySelectorAll('.hover-group');
+        hoverGroups.forEach(group => {
+            if(window.innerWidth <= 768) return; // Disable on mobile
+
+            const highlight = document.createElement('span');
+            highlight.className = 'hover-highlight';
+            // Set initial state
+            highlight.style.opacity = '0';
+            group.appendChild(highlight);
+
+            const cards = group.querySelectorAll('.glass-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const padding = 10; // Highlight peeks out 10px
+                    highlight.style.opacity = '1';
+                    highlight.style.width = `${card.offsetWidth + padding * 2}px`;
+                    highlight.style.height = `${card.offsetHeight + padding * 2}px`;
+                    highlight.style.transform = `translate(${card.offsetLeft - padding}px, ${card.offsetTop - padding}px)`;
+                });
+            });
+
+            group.addEventListener('mouseleave', () => {
+                highlight.style.opacity = '0';
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                highlight.style.opacity = '0'; // Hide highlight on resize to prevent misalignment until next hover
+            });
+        });
+
+        // Typewriter Effect (Aceternity UI)
+        const typeTitle = document.getElementById('typewriter-title');
+        if (typeTitle) {
+            const wordsData = [
+                { text: "Building " },
+                { text: "Tomorrow's " },
+                { text: "\n" },
+                { text: "Software ", className: "text-gradient" },
+                { text: "Solutions", className: "text-gradient" }
+            ];
+
+            wordsData.forEach(wordObj => {
+                if (wordObj.text === "\n") {
+                    typeTitle.appendChild(document.createElement('br'));
+                    return;
+                }
+                const wordSpan = document.createElement('span');
+                if (wordObj.className) wordSpan.className = wordObj.className;
+                wordSpan.style.whiteSpace = "pre-wrap";
+                
+                wordObj.text.split('').forEach(char => {
+                    const charSpan = document.createElement('span');
+                    charSpan.textContent = char;
+                    charSpan.style.opacity = '0';
+                    charSpan.style.transition = 'opacity 0.1s ease-in';
+                    wordSpan.appendChild(charSpan);
+                });
+                typeTitle.appendChild(wordSpan);
+            });
+
+            const cursor = document.createElement('span');
+            cursor.className = 'tw-cursor';
+            typeTitle.appendChild(cursor);
+
+            const allChars = typeTitle.querySelectorAll('span > span');
+            let charIndex = 0;
+            setTimeout(() => { // slight delay before typing starts
+                const typeInterval = setInterval(() => {
+                    if (charIndex < allChars.length) {
+                        allChars[charIndex].style.opacity = '1';
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 50); // 50ms per character
+            }, 500);
+        }
+
+        // Text Generate Effect (Aceternity UI)
+        const textGenP = document.getElementById('text-generate-p');
+        if (textGenP) {
+            const fullText = textGenP.textContent;
+            textGenP.textContent = ''; // clear it
+            const words = fullText.split(' ');
+            
+            words.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.textContent = word;
+                span.className = 'tg-word';
+                // stagger delay: 0.1s between words, starting after typewriter finishes
+                span.style.animationDelay = `${1.5 + (index * 0.1)}s`;
+                textGenP.appendChild(span);
+                textGenP.appendChild(document.createTextNode(' '));
+            });
+        }
+
+        // Hero Parallax Scroll Animation (Aceternity UI)
+        const parallaxWrapper = document.getElementById('hero-parallax-wrapper');
+        const parallaxGrid = document.getElementById('parallax-grid');
+        const row1 = document.getElementById('parallax-row-1');
+        const row2 = document.getElementById('parallax-row-2');
+        const row3 = document.getElementById('parallax-row-3');
+
+        if (parallaxWrapper && parallaxGrid) {
+            // Set initial offsets
+            if(row1) row1.style.transform = `translateX(0px)`;
+            if(row2) row2.style.transform = `translateX(-800px)`;
+            if(row3) row3.style.transform = `translateX(0px)`;
+
+            let targetProgress = 0;
+            let currentProgress = 0;
+
+            window.addEventListener('scroll', () => {
+                const rect = parallaxWrapper.getBoundingClientRect();
+                // If the wrapper is above or below the viewport, do nothing
+                if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+                
+                const maxScroll = rect.height - window.innerHeight;
+                if (maxScroll > 0) {
+                    targetProgress = Math.max(0, Math.min(1, -rect.top / maxScroll));
+                }
+            });
+
+            const renderLoop = () => {
+                // Lerp for smoothness
+                currentProgress += (targetProgress - currentProgress) * 0.08;
+                
+                const rotateX = 20 - (currentProgress * 20);
+                const rotateZ = 20 - (currentProgress * 20);
+                const translateY = currentProgress * -600; // Move up drastically to overlap text
+                
+                parallaxGrid.style.transform = `rotateX(${rotateX}deg) rotateZ(${rotateZ}deg) translateY(${translateY}px)`;
+                
+                const tx1 = currentProgress * -800;
+                const tx2 = -800 + (currentProgress * 800); 
+                const tx3 = currentProgress * -800;
+
+                row1.style.transform = `translateX(${tx1}px)`;
+                row2.style.transform = `translateX(${tx2}px)`;
+                row3.style.transform = `translateX(${tx3}px)`;
+
+                requestAnimationFrame(renderLoop);
+            };
+
+            // Start loop
+            requestAnimationFrame(renderLoop);
+        }
+    </script>
+    <script src="{{ asset('js/main.js') }}"></script>
+</body>
+</html>
+
