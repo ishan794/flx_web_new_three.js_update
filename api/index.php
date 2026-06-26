@@ -110,5 +110,25 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
 // Override storage path to use /tmp/storage
 $app->useStoragePath($storagePath);
 
+// Inject a completely custom exception handler to bypass the broken view renderer
+$app->singleton(
+    \Illuminate\Contracts\Debug\ExceptionHandler::class,
+    function () {
+        return new class implements \Illuminate\Contracts\Debug\ExceptionHandler {
+            public function report(\Throwable $e) { }
+            public function render($request, \Throwable $e) {
+                http_response_code(500);
+                echo "<h1>BINGO! Original Exception Caught</h1>";
+                echo "<p><b>Message:</b> " . $e->getMessage() . "</p>";
+                echo "<p><b>File:</b> " . $e->getFile() . ":" . $e->getLine() . "</p>";
+                echo "<h3>Stack Trace:</h3><pre>" . $e->getTraceAsString() . "</pre>";
+                exit(1);
+            }
+            public function renderForConsole($output, \Throwable $e) { }
+            public function shouldReport(\Throwable $e) { return true; }
+        };
+    }
+);
+
 // Handle the request
 $app->handleRequest(Illuminate\Http\Request::capture());
