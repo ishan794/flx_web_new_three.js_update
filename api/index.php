@@ -2,6 +2,20 @@
 
 define('LARAVEL_START', microtime(true));
 
+// Force session, cache, and logging overrides for Vercel serverless environment
+// This prevents database errors from SQLite session/cache drivers at runtime
+putenv('SESSION_DRIVER=cookie');
+putenv('CACHE_STORE=array');
+putenv('LOG_CHANNEL=stderr');
+
+$_ENV['SESSION_DRIVER'] = 'cookie';
+$_ENV['CACHE_STORE'] = 'array';
+$_ENV['LOG_CHANNEL'] = 'stderr';
+
+$_SERVER['SESSION_DRIVER'] = 'cookie';
+$_SERVER['CACHE_STORE'] = 'array';
+$_SERVER['LOG_CHANNEL'] = 'stderr';
+
 // Register the Composer autoloader
 require __DIR__ . '/../vendor/autoload.php';
 
