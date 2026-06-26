@@ -7,8 +7,15 @@ ini_set('display_errors', '1');
 error_reporting(E_ALL);
 
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    if (!(error_reporting() & $errno)) {
+        return false;
+    }
+    // Ignore warnings/notices to find the real fatal error
+    if ($errno === E_WARNING || $errno === E_NOTICE || $errno === E_USER_WARNING || $errno === E_USER_NOTICE || $errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) {
+        return false;
+    }
     echo "<h1>PHP Error</h1><p><b>Error:</b> [$errno] $errstr</p><p><b>File:</b> $errfile:$errline</p>";
-    return true; // Don't execute PHP internal error handler
+    return true;
 });
 
 set_exception_handler(function($exception) {
