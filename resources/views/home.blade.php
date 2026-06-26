@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- 1. Hero Section (Hero Parallax) -->
-<div class="hero-parallax-wrapper" id="hero-parallax-wrapper">
+<div class="hero-parallax-wrapper section-light" id="hero-parallax-wrapper">
     <!-- Fixed background canvas -->
     <canvas id="three-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.7; z-index: 0;"></canvas>
     
@@ -51,7 +51,7 @@
 </div>
 
 <!-- 2. Welcome Section -->
-<section class="section section-alt text-center">
+<section class="section section-dark text-center">
     <div class="container">
         <div class="section-header fade-in" style="max-width: 800px; margin: 0 auto;">
             <h2>Welcome to Flxware Technologies</h2>
@@ -62,7 +62,7 @@
 </section>
 
 <!-- 3. Why Choose Flxware -->
-<section class="section">
+<section class="section section-light">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Why Choose Flxware?</h2>
@@ -90,7 +90,7 @@
 </section>
 
 <!-- 4. Our Services -->
-<section class="section section-alt" id="services">
+<section class="section section-dark" id="services">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Our Services</h2>
@@ -156,7 +156,7 @@
 </section>
 
 <!-- 5. Why Engitech App -->
-<section class="section section-alt text-center" id="why-engitech">
+<section class="section section-light text-center" id="why-engitech">
     <div class="container">
         <div class="section-header fade-in" style="margin-bottom: 4rem;">
             <h2>Why Engitech App</h2>
@@ -200,7 +200,7 @@
 </section>
 
 <!-- 6. Our Development Process -->
-<section class="section">
+<section class="section section-dark">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Our Development Process</h2>
@@ -228,7 +228,7 @@
 </section>
 
 <!-- 7. About Flxware Technologies -->
-<section class="section section-alt" id="about">
+<section class="section section-light" id="about">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>About Flxware Technologies</h2>
@@ -263,7 +263,7 @@
 </section>
 
 <!-- 8. Our Core Values -->
-<section class="section">
+<section class="section section-dark">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Our Core Values</h2>
@@ -291,7 +291,7 @@
 </section>
 
 <!-- 9. Our Portfolio -->
-<section class="section section-alt" id="portfolio">
+<section class="section section-light" id="portfolio">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Our Portfolio</h2>
@@ -366,7 +366,7 @@
 </section>
 
 <!-- 10. Technologies We Use -->
-<section class="section text-center">
+<section class="section section-dark text-center">
     <div class="container">
         <div class="section-header fade-in">
             <h2>Technologies We Use</h2>
@@ -402,7 +402,7 @@
 </section>
 
 <!-- 11. Contact Section -->
-<section class="section section-alt" id="contact">
+<section class="section section-light" id="contact">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Get In <span class="text-gradient">Touch</span></h2>
@@ -475,7 +475,7 @@
 </section>
 
 <!-- 12. FAQ -->
-<section class="section">
+<section class="section section-dark">
     <div class="container">
         <div class="section-header text-center fade-in">
             <h2>Frequently Asked Questions</h2>
@@ -503,7 +503,7 @@
 </section>
 
 <!-- 13. Ready to Start -->
-<section class="section section-alt text-center" style="padding-bottom: 8rem;">
+<section class="section section-light text-center" style="padding-bottom: 8rem;">
     <div class="container fade-in">
         <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ready to Start Your Project?</h2>
         <p style="font-size: 1.25rem; max-width: 600px; margin: 0 auto 2.5rem; color: var(--text-secondary);">Let's discuss how we can help bring your software vision to life. Contact us today for a free consultation.</p>

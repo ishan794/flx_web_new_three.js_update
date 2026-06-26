@@ -11,21 +11,21 @@
        About Flxware Section Styles
        ========================================= */
     .about-flxware-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #eef2f5 100%);
+        background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         padding: 80px 0;
         font-family: 'Outfit', 'Poppins', sans-serif;
-        color: #2b3445;
+        color: var(--text-secondary);
     }
 
     .about-flxware-section .section-title {
         font-weight: 700;
-        color: #0b1528;
+        color: var(--text-primary);
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
     }
 
     .about-flxware-section .section-subtitle {
-        color: #3b82f6;
+        color: var(--accent);
         font-weight: 600;
         font-size: 1.25rem;
         margin-bottom: 1.5rem;
@@ -33,7 +33,7 @@
 
     .about-flxware-section .lead-text {
         font-size: 1.15rem;
-        color: #64748b;
+        color: var(--text-secondary);
         max-width: 800px;
         margin: 0 auto;
         line-height: 1.7;
@@ -41,33 +41,37 @@
 
     /* Mission Box */
     .mission-box {
-        background: #ffffff;
-        border-left: 5px solid #3b82f6;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-left: 5px solid var(--accent);
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         height: 100%;
         transition: all 0.3s ease;
+        color: var(--text-primary);
     }
 
     .mission-box:hover {
-        box-shadow: 0 15px 35px rgba(59, 130, 246, 0.1);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--accent);
         transform: translateY(-5px);
     }
 
     /* Feature Cards */
     .flx-feature-card {
-        background: #ffffff;
+        background: var(--glass-bg);
         border-radius: 16px;
         padding: 40px 20px;
         text-align: center;
         box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-        border: 1px solid rgba(0,0,0,0.03);
+        border: 1px solid var(--glass-border);
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         height: 100%;
         position: relative;
         overflow: hidden;
         z-index: 1;
+        color: var(--text-primary);
     }
 
     .flx-feature-card::before {
@@ -77,7 +81,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(139,92,246,0.05) 100%);
+        background: linear-gradient(135deg, rgba(37, 99, 213, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
         z-index: -1;
         opacity: 0;
         transition: opacity 0.4s ease;
@@ -85,8 +89,8 @@
 
     .flx-feature-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.12);
-        border-color: rgba(59, 130, 246, 0.2);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--accent);
     }
 
     .flx-feature-card:hover::before {
@@ -97,8 +101,8 @@
         width: 80px;
         height: 80px;
         margin: 0 auto 25px;
-        background: rgba(59, 130, 246, 0.1);
-        color: #3b82f6;
+        background: rgba(37, 99, 213, 0.1);
+        color: var(--accent);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -108,7 +112,7 @@
     }
 
     .flx-feature-card:hover .flx-icon-wrapper {
-        background: #3b82f6;
+        background: var(--accent);
         color: #ffffff;
         transform: scale(1.1);
     }
@@ -117,13 +121,13 @@
         font-weight: 700;
         font-size: 1.2rem;
         margin-bottom: 0;
-        color: #0b1528;
+        color: var(--text-primary);
     }
 
     /* Statistics Counters */
     .stat-wrapper {
         padding: 40px 0 0 0;
-        border-top: 1px solid rgba(0,0,0,0.08);
+        border-top: 1px solid var(--glass-border);
         margin-top: 30px;
     }
 
@@ -135,7 +139,7 @@
     .stat-number {
         font-size: 3.5rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        background: var(--accent-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 10px;
@@ -145,7 +149,7 @@
     .stat-text {
         font-size: 1rem;
         font-weight: 500;
-        color: #64748b;
+        color: var(--text-secondary);
         text-transform: uppercase;
         letter-spacing: 1px;
         margin: 0;
@@ -165,23 +169,22 @@
                 </p>
             </div>
         </div>
-
         <!-- Story & Mission Row -->
         <div class="row mb-5 align-items-stretch g-4">
             <div class="col-lg-6">
                 <div class="pe-lg-4">
-                    <h3 class="mb-4 fw-bold" style="color: #0b1528;">Our Story</h3>
-                    <p style="color: #475569; line-height: 1.8; font-size: 1.05rem;">
+                    <h3 class="mb-4 fw-bold" style="color: var(--text-primary);">Our Story</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem;">
                         Founded in 2020, Flxware Technologies started with a simple idea: software development shouldn't require a Fortune 500 budget to be done properly. We work with startups and growing businesses who need software that's built right the first time — not just shipped fast and patched later.
                     </p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="mission-box">
-                    <h3 class="mb-3 fw-bold" style="color: #3b82f6;">
+                    <h3 class="mb-3 fw-bold" style="color: var(--accent);">
                         <i class="fas fa-rocket me-2"></i> Our Mission
                     </h3>
-                    <p class="mb-0" style="color: #475569; line-height: 1.7; font-size: 1.05rem;">
+                    <p class="mb-0" style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem;">
                         Our mission is to empower businesses through innovative software solutions that drive growth, improve efficiency, and create exceptional user experiences. We're committed to delivering high-quality, scalable solutions that stand the test of time.
                     </p>
                 </div>

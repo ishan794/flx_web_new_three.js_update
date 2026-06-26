@@ -1,39 +1,60 @@
-:root, body.dark-theme {
-    --bg-primary: #020817;
-    --bg-secondary: #0b1528;
+:root {
+    --bg-primary: #020617;
+    --bg-secondary: #070e20;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --accent: #3b82f6;
     --accent-hover: #2563eb;
-    --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    --glass-bg: rgba(11, 21, 40, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-gradient: linear-gradient(135deg, #2563eb, #4f46e5);
+    --glass-bg: rgba(7, 14, 32, 0.6);
+    --glass-border: rgba(59, 130, 246, 0.12);
     --nav-height: 80px;
-    --hover-bg: rgba(255, 255, 255, 0.1);
-    --glass-hover-bg: rgba(15, 23, 42, 0.9);
-    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --hover-bg: rgba(59, 130, 246, 0.08);
+    --glass-hover-bg: rgba(7, 14, 32, 0.95);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
     --transition: all 0.3s ease;
-    --input-bg: rgba(15, 23, 42, 0.6);
-    --input-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(7, 14, 32, 0.5);
+    --input-border: rgba(59, 130, 246, 0.15);
 }
 
-body.light-theme {
-    --bg-primary: #ffffff; /* White 50% */
-    --bg-secondary: #e0f2fe; /* Light Blue 30% */
-    --text-primary: #000000; /* Black Text 20% */
-    --text-secondary: #333333;
+.section-light {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-gradient: linear-gradient(135deg, #2563eb, #4f46e5);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --hover-bg: rgba(15, 23, 42, 0.04);
+    --glass-hover-bg: #ffffff;
+    --shadow-hover: 0 20px 40px rgba(15, 23, 42, 0.08);
+    --input-bg: #ffffff;
+    --input-border: rgba(15, 23, 42, 0.15);
+
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+.section-dark {
+    --bg-primary: #020617;
+    --bg-secondary: #070e20;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
     --accent: #3b82f6;
     --accent-hover: #2563eb;
-    --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(59, 130, 246, 0.15);
-    --nav-height: 80px;
-    --hover-bg: rgba(59, 130, 246, 0.05);
-    --glass-hover-bg: #ffffff; /* White background on hover */
-    --shadow-hover: 0 10px 30px rgba(59, 130, 246, 0.15);
-    --transition: all 0.3s ease;
-    --input-bg: #ffffff; /* Clean white input */
-    --input-border: rgba(0, 0, 0, 0.15); /* Clean visible border */
+    --accent-gradient: linear-gradient(135deg, #2563eb, #4f46e5);
+    --glass-bg: rgba(7, 14, 32, 0.6);
+    --glass-border: rgba(59, 130, 246, 0.12);
+    --hover-bg: rgba(59, 130, 246, 0.08);
+    --glass-hover-bg: rgba(7, 14, 32, 0.95);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+    --input-bg: rgba(7, 14, 32, 0.5);
+    --input-border: rgba(59, 130, 246, 0.15);
+
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
 }
 
 * {
@@ -131,17 +152,67 @@ p {
     -webkit-text-fill-color: transparent;
 }
 
+/* Register CSS property for smooth border gradient rotation */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate-glow {
+    0% {
+        --angle: 0deg;
+    }
+    100% {
+        --angle: 360deg;
+    }
+}
+
 /* Buttons */
-.btn-primary {
+.btn-primary,
+.btn-outline,
+.pill-btn {
+    position: relative;
     display: inline-block;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+/* Base style for the rotating border animation */
+.btn-primary::before,
+.btn-outline::before,
+.pill-btn::before {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    padding: 2px; /* Defines border thickness */
+    background: conic-gradient(
+        from var(--angle),
+        transparent 20%,
+        #3b82f6 50%,
+        #60a5fa 60%,
+        transparent 90%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: rotate-glow 3s linear infinite;
+    transition: var(--transition);
+}
+
+.btn-primary {
     padding: 0.75rem 1.5rem;
     background: var(--accent-gradient);
     color: white;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transition);
     border: none;
-    cursor: pointer;
+}
+
+.btn-primary::before {
+    inset: 0;
 }
 
 .btn-primary:hover {
@@ -150,19 +221,35 @@ p {
 }
 
 .btn-outline {
-    display: inline-block;
     padding: 0.75rem 1.5rem;
     background: transparent;
     color: var(--text-primary);
-    border: 2px solid var(--accent);
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transition);
+    border: 2px solid rgba(59, 130, 246, 0.25); /* Subtle border track */
+}
+
+.btn-outline::before {
+    inset: -2px; /* Expands to cover the border-box */
 }
 
 .btn-outline:hover {
     background: var(--accent);
+    color: white;
+    border-color: transparent;
     transform: translateY(-2px);
+}
+
+/* Hover effects for rotating borders */
+.btn-primary:hover::before,
+.btn-outline:hover::before,
+.pill-btn:hover::before {
+    animation-duration: 1.5s;
+    background: conic-gradient(
+        from var(--angle),
+        transparent 10%,
+        #60a5fa 50%,
+        #93c5fd 60%,
+        transparent 90%
+    );
 }
 
 /* Navigation - Floating Pill */
@@ -216,18 +303,20 @@ p {
 
 .pill-btn {
     background: transparent;
-    border: 1px solid var(--accent);
+    border: 2px solid rgba(59, 130, 246, 0.25); /* Subtle border track */
     color: var(--text-primary);
     padding: 0.4rem 1.2rem;
-    border-radius: 50px;
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: var(--transition);
+}
+
+.pill-btn::before {
+    inset: -2px; /* Expands to cover the border-box */
 }
 
 .pill-btn:hover {
     background: var(--accent);
     color: white;
+    border-color: transparent;
 }
 
 .mobile-toggle {
@@ -248,8 +337,8 @@ p {
 
 /* Main Content */
 .main-content {
-    margin-top: 120px;
-    min-height: calc(100vh - 120px);
+    margin-top: 0;
+    min-height: 100vh;
 }
 
 /* Sections & Containers */

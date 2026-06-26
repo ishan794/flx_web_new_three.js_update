@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <!-- Preloader -->
@@ -39,11 +40,6 @@
                 <li><a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}" class="nav-scroll-link">Contact</a></li>
             </ul>
             <a href="{{ request()->routeIs('home') ? '#contact' : route('contact') }}" class="pill-btn nav-scroll-link">Get Started</a>
-            
-            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" style="background: transparent; border: 1px solid var(--glass-border); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-primary); margin-left: 10px;">
-                <svg id="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg id="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </button>
 
             <button class="mobile-toggle" id="mobile-toggle">
                 <span></span><span></span><span></span>
@@ -114,36 +110,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="{{ asset('js/three-animation.js') }}"></script>
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
-        
-        // Check saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light-theme';
-        document.body.classList.add(savedTheme);
-        
-        if(savedTheme === 'light-theme') {
-            moonIcon.style.display = 'block';
-            sunIcon.style.display = 'none';
-        } else {
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if(document.body.classList.contains('light-theme')) {
-                document.body.classList.remove('light-theme');
-                localStorage.setItem('theme', 'dark-theme');
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-            } else {
-                document.body.classList.add('light-theme');
-                localStorage.setItem('theme', 'light-theme');
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-            }
-        });
-
         // Floating Nav Scroll Behavior
         let lastScrollY = window.scrollY;
         const navWrapper = document.querySelector('.navbar-wrapper');
@@ -157,6 +123,63 @@
                 navWrapper.classList.remove('nav-hidden');
             }
             lastScrollY = window.scrollY;
+        });
+
+        // Auto Scroll (Snapping) between Hero and Second Section (Bidirectional)
+        let hasAutoScrolledDown = false;
+        let hasAutoScrolledUp = false;
+        let lastScrollPosition = window.scrollY;
+        let isScrolling = false;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const isScrollingDown = currentScrollY > lastScrollPosition;
+            const thresholdDown = 60;
+            const parallaxWrapper = document.getElementById('hero-parallax-wrapper');
+            
+            if (parallaxWrapper) {
+                const nextSection = document.querySelector('.section-dark'); // Welcome Section
+                if (nextSection) {
+                    const welcomeTop = nextSection.offsetTop;
+                    
+                    // 1. Scroll DOWN from Hero to Welcome
+                    if (isScrollingDown && currentScrollY > thresholdDown && currentScrollY < welcomeTop - 100 && !hasAutoScrolledDown && !isScrolling) {
+                        hasAutoScrolledDown = true;
+                        hasAutoScrolledUp = false;
+                        isScrolling = true;
+                        
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                        
+                        setTimeout(() => { isScrolling = false; }, 1000);
+                    }
+                    
+                    // 2. Scroll UP from Welcome to Hero (Triggers instantly on first scroll up tick)
+                    if (!isScrollingDown && currentScrollY < welcomeTop - 10 && currentScrollY > thresholdDown && !hasAutoScrolledUp && !isScrolling) {
+                        hasAutoScrolledUp = true;
+                        hasAutoScrolledDown = false;
+                        isScrolling = true;
+                        
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        
+                        setTimeout(() => { isScrolling = false; }, 1000);
+                    }
+                    
+                    // Reset/adjust flags based on position
+                    if (currentScrollY < 30) {
+                        hasAutoScrolledDown = false;
+                        hasAutoScrolledUp = false;
+                    }
+                    if (currentScrollY >= welcomeTop - 50) {
+                        hasAutoScrolledDown = true;
+                        hasAutoScrolledUp = false;
+                    }
+                }
+            }
+            
+            lastScrollPosition = currentScrollY;
         });
 
         // Floating Dock Animation for Navbar Links
